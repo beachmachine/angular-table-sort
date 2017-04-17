@@ -1,0 +1,79 @@
+<!doctype html><html>  <head>    <meta charset="utf-8">    <title>JSDoc: Index</title>    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">    <link href="css/site.css" type="text/css" rel="stylesheet">  </head>  <body ng-app="">    <nav id="toc">      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">      <div class="nav-wrapper">      <h2><a href="index.html">Index</a></h2>      <ul class="module">        <!-- undefined -->        <h2 class="module">          <a chref="" ng-click="moduleundefined = !moduleundefined">            module: undefined          </a>          <i ng-cloak="" ng-show="moduleundefined">+</i>        </h2>        <li id="undefined" ng-hide="moduleundefined">          <ul class="group">            <h2>              <a href="" ng-click="undefineddirective = !undefineddirective">                directive              </a>              <i ng-cloak="" ng-show="undefineddirective">+</i>            </h2>            <ul ng-hide="undefineddirective">              <li>                <a href="tableSort.html">tableSort</a>              </li><li>                <a href="tableSortField.html">tableSortField</a>              </li>            </ul>          </ul><ul class="group">            <h2>              <a href="" ng-click="undefinedcontroller = !undefinedcontroller">                controller              </a>              <i ng-cloak="" ng-show="undefinedcontroller">+</i>            </h2>            <ul ng-hide="undefinedcontroller">              <li>                <a href="TableSortController.html">TableSortController</a>              </li><li>                <a href="TableSortFieldController.html">TableSortFieldController</a>              </li>            </ul>          </ul>        </li>      </ul>      </div>    </nav>    <div id="content" class="page-wrap">      <h1 class="title">        Index      </h1>      <div id="main" class="big-container">        <!-- source code html -->        <!-- index.html -->        <section class="section-readme">          <article>            <h1>Angular TableSort</h1><p>Angular TableSort is an AngularJS directive that helps you create sortable tables, e.g. by clicking on the table header.
+This directive does not create any HTML output, so you can use it with your HTML structure as needed. You are also not
+limited to using it with tables - it's just the most common use-case.</p>
+<p><strong>Note:</strong> This library is for AngularJS 1.x only!</p>
+<h2>Dependencies</h2><p>Angular TableSort depends on AngularJS 1.x.</p>
+<h2>Installation</h2><ul>
+<li>Via <code>npm</code>: <code>npm install --save angular-table-sort</code></li>
+<li>Via <code>git</code>: <code>git clone git@github.com:beachmachine/angular-table-sort.git</code></li>
+</ul>
+<h2>Examples</h2><h3>Crating a sortable table</h3><p>In the following example we have a data structure holding data of persons. We use data binding to generate a table
+containing these persons' data. We also want the first name and last name in one column, though they are stored in
+separate fields. The name should be the initially sorted column.</p>
+<p>To make things a bit clearer, this is what the persons data structure looks like:</p>
+<pre class="prettyprint source lang-json"><code>[
+  {
+    &quot;first_name&quot;: &quot;First name 1&quot;,
+    &quot;last_name&quot;: &quot;Last name 1&quot;,
+    &quot;email&quot;: &quot;firstname1@lastname1.com&quot;
+  },
+  {
+    &quot;first_name&quot;: &quot;First name 2&quot;,
+    &quot;last_name&quot;: &quot;Last name 2&quot;,
+    &quot;email&quot;: &quot;firstname2@lastname2.com&quot;
+  },
+  {
+    &quot;first_name&quot;: &quot;First name 3&quot;,
+    &quot;last_name&quot;: &quot;Last name 3&quot;,
+    &quot;email&quot;: &quot;firstname3@lastname3.com&quot;
+  }
+]</code></pre><p>Declare dependency on Angular TableSort for your main application:</p>
+<pre class="prettyprint source lang-javascript"><code>(function() {
+    var app = angular.module('app', [
+        'ngTableSort'
+    ])
+})();</code></pre><p>This is how to create the table:</p>
+<pre class="prettyprint source lang-html"><code>&lt;table table-sort>
+    &lt;thead>
+        &lt;tr>
+            &lt;th table-sort-field=&quot;first_name + ' ' + last_name&quot;
+                table-sort-initial
+                ng-click=&quot;tableSort()&quot;>
+                &lt;span>Name&lt;/span>
+                &lt;i class=&quot;fa&quot; ng-class=&quot;{'fa-sort-desc': reverse(), 'fa-sort-asc': !reverse()}&quot; ng-show=&quot;current()&quot; aria-hidden=&quot;true&quot;>&lt;/i>
+            &lt;/th>
+            &lt;th table-sort-field=&quot;email&quot;
+                ng-click=&quot;tableSort()&quot;>
+                &lt;span>Email&lt;/span>
+                &lt;i class=&quot;fa&quot; ng-class=&quot;{'fa-sort-desc': reverse(), 'fa-sort-asc': !reverse()}&quot; ng-show=&quot;current()&quot; aria-hidden=&quot;true&quot;>&lt;/i>
+            &lt;/th>
+        &lt;/tr>
+    &lt;/thead>
+    &lt;tbody>
+        &lt;tr ng-repeat=&quot;person in tableSort(vm.persons) track by person.email&quot;>
+            &lt;td>{{ person.first_name }} {{ person.last_name }}&lt;/td>
+            &lt;td>{{ person.email }}&lt;/td>
+        &lt;/tr>
+    &lt;/tbody>
+&lt;/table></code></pre><p>Additional information regarding the <code>table-sort-field</code> directive:</p>
+<ul>
+<li>This directive declares how to sort the given array via an arbitrary expression.</li>
+<li>You can access the current item via <code>$$this</code>.</li>
+<li>You can access the current scope via <code>$$scope</code>.</li>
+</ul>
+<h2>Contributions</h2><ul>
+<li>Andreas Stocker <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#97;&#x6e;&#x64;&#114;&#101;&#97;&#115;&#64;&#x73;&#116;&#111;&#99;&#107;&#101;&#114;&#x2e;&#99;&#111;&#46;&#105;&#116;">&#97;&#x6e;&#x64;&#114;&#101;&#97;&#115;&#64;&#x73;&#116;&#111;&#99;&#107;&#101;&#114;&#x2e;&#99;&#111;&#46;&#105;&#116;</a>, Main developer</li>
+</ul>
+<h2>License</h2><p>Angular TableSort,
+Copyright 2016 Andreas Stocker,
+MIT License</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>          </article>        </section>        <!-- class files -->      </div>      <footer style="clear:both">        Documentation generated by        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>        using        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>      </footer>    </div>    <script src="js/prettify.js"></script>    <script src="js/angular.min.js"></script>    <script src="js/site.js"></script>    <!--%= prettyJson %-->    <script>      prettyPrint();      var lineNo = window.location.hash.match(/#line([0-9]+)$/);      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();    </script>  </body></html>
