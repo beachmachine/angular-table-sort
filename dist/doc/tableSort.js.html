@@ -1,4 +1,48 @@
-<!doctype html><html>  <head>    <meta charset="utf-8">    <base href="../">    <title>JSDoc: source : tableSort.js</title>    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet">    <link href="css/site.css" type="text/css" rel="stylesheet">  </head>  <body ng-app="">    <nav id="toc">      <input placeholder="Filter" id="filter-input" class="col12 block field" type="text">      <div class="nav-wrapper">      <h2><a href="index.html">Index</a></h2>      <ul class="module">        <!-- undefined -->        <h2 class="module">          <a chref="" ng-click="moduleundefined = !moduleundefined">            module: undefined          </a>          <i ng-cloak="" ng-show="moduleundefined">+</i>        </h2>        <li id="undefined" ng-hide="moduleundefined">          <ul class="group">            <h2>              <a href="" ng-click="undefineddirective = !undefineddirective">                directive              </a>              <i ng-cloak="" ng-show="undefineddirective">+</i>            </h2>            <ul ng-hide="undefineddirective">              <li>                <a href="tableSort.html">tableSort</a>              </li><li>                <a href="tableSortField.html">tableSortField</a>              </li>            </ul>          </ul><ul class="group">            <h2>              <a href="" ng-click="undefinedcontroller = !undefinedcontroller">                controller              </a>              <i ng-cloak="" ng-show="undefinedcontroller">+</i>            </h2>            <ul ng-hide="undefinedcontroller">              <li>                <a href="TableSortController.html">TableSortController</a>              </li><li>                <a href="TableSortFieldController.html">TableSortFieldController</a>              </li>            </ul>          </ul>        </li>      </ul>      </div>    </nav>    <div id="content" class="page-wrap">      <h1 class="title">        source : tableSort.js      </h1>      <div id="main" class="big-container">        <!-- source code html -->        <article>          <pre class="prettyprint source linenums"><code>/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tableSort.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="scripts/prettify/springeo.js" defer async></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/springeo.css">
+    <link type="text/css" rel="stylesheet" href="styles/simple-jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><input id="search" type="search" placeholder="Search..."><h3>Classes</h3><ul id=classes><li><a href="TableSortController.html"><div class="ancestor"></div>TableSortController</a><ul class='methods'><li data-type='method'><a href="TableSortController.html#getTableSortField">getTableSortField</a></li><li data-type='method'><a href="TableSortController.html#getTableSortReverse">getTableSortReverse</a></li><li data-type='method'><a href="TableSortController.html#setTableSortField">setTableSortField</a></li><li data-type='method'><a href="TableSortController.html#setTableSortReverse">setTableSortReverse</a></li><li data-type='method'><a href="TableSortController.html#tableSort">tableSort</a></li></ul></li><li><a href="TableSortFieldController.html"><div class="ancestor"></div>TableSortFieldController</a><ul class='methods'><li data-type='method'><a href="TableSortFieldController.html#current">current</a></li><li data-type='method'><a href="TableSortFieldController.html#reverse">reverse</a></li><li data-type='method'><a href="TableSortFieldController.html#tableSort">tableSort</a></li></ul></li></ul><h3>Global</h3><ul id="global"><li><a href="global.html#tableSort">tableSort</a></li><li><a href="global.html#tableSortField">tableSortField</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tableSort.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * Angular TableSort
  * Copyright 2016 Andreas Stocker
  * MIT License
@@ -16,10 +60,14 @@
  * OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
+
 (function () {
     'use strict';
+
     var
         module = angular.module('ngTableSort');
+
     /**
      * Directive for client side table sorting.
      *
@@ -35,68 +83,87 @@
             };
         }
     );
+
     /**
      * Controller for client side table sorting.
      *
      * @name TableSortController
      * @ngdoc controller
+     * @class
      */
     module.controller('TableSortController',
         function ($scope,
                   $filter) {
             'ngInject';
+
             var
                 self = this,
                 orderBy = $filter('orderBy'),
                 tableSortField = null,
                 tableSortReverse = null;
+
             /**
              * Gets the expression to sort on.
              *
              * @memberof TableSortController
+             * @function getTableSortField
              * @return {*}
+             * @instance
              */
             self.getTableSortField = function () {
                 return tableSortField;
             };
+
             /**
              * Sets the expression to sort on.
              *
              * @memberof TableSortController
+             * @function setTableSortField
              * @param config
+             * @instance
              */
             self.setTableSortField = function (config) {
                 tableSortField = config;
             };
+
             /**
              * Gets whether to sort in reverse order or not.
              *
              * @memberof TableSortController
+             * @function getTableSortReverse
              * @return {boolean}
+             * @instance
              */
             self.getTableSortReverse = function () {
                 return !!tableSortReverse;
             };
+
             /**
              * Sets whether to sort in reverse order or not.
              *
              * @memberof TableSortController
+             * @function setTableSortReverse
              * @param reverse
+             * @instance
              */
             self.setTableSortReverse = function (reverse) {
                 tableSortReverse = reverse;
             };
+
             /**
              * Sorts the given list by the sort configuration.
              *
              * @memberof TableSortController
+             * @function tableSort
              * @param list
              * @return {*}
+             * @instance
              */
             self.tableSort = function (list) {
                 var
                     field = self.getTableSortField(),
                     reverse = self.getTableSortReverse();
+
                 // Only sort when we have a field to sort on
                 if (field) {
                     // Publish the scope on each item
@@ -104,15 +171,19 @@
                         list[i].$$scope = $scope;
                         list[i].$$this = list[i];
                     }
+
                     list = orderBy(list, field, reverse);
+
                     // Remove the scope from each item
                     for (var j = 0; j &lt; list.length; j++) {
                         delete list[j].$$scope;
                         delete list[j].$$this;
                     }
                 }
+
                 return list;
             };
+
             /*
              * Publish the API on the scope
              */
@@ -123,6 +194,7 @@
             $scope.tableSort = self.tableSort;
         }
     );
+
     /**
      * Directive for client side table sorting on a specific field.
      *
@@ -140,70 +212,91 @@
                     scope.tableSortCtrl = tableSortCtrl;
                     scope.tableSortField = attrs.tableSortField;
                     scope.tableSortInitial = !angular.isUndefined(attrs.tableSortInitial);
+                    scope.tableSortReverseInitial = !angular.isUndefined(attrs.tableSortReverseInitial);
                 }
             };
         }
     );
+
     /**
      * Controller for client side table sorting.
      *
      * @name TableSortFieldController
      * @ngdoc controller
+     * @class
      */
     module.controller('TableSortFieldController',
         function ($scope) {
             'ngInject';
+
             var
                 self = this,
                 reverse = false;
+
             // Set the constructor
             self.$onInit = init;
+
             /**
              * Calls the sort operation on the table sort directive.
              *
              * @memberof TableSortFieldController
+             * @function tableSort
+             * @instance
              */
             self.tableSort = function () {
                 var
                     currentField = $scope.tableSortCtrl.getTableSortField(),
                     selfField = $scope.tableSortField;
+
                 // Toggle reverse if we are already sorting on this field, else
                 // do not reverse
-                reverse = currentField === selfField ? !reverse : false;
+                reverse = currentField === selfField ? !reverse : reverse;
+
                 $scope.tableSortCtrl.setTableSortField(selfField);
                 $scope.tableSortCtrl.setTableSortReverse(reverse);
             };
+
             /**
              * Checks if this is the field we are currently sorting on.
              *
              * @memberof TableSortFieldController
+             * @function current
              * @return {boolean}
+             * @instance
              */
             self.current = function () {
                 var
                     currentField = $scope.tableSortCtrl.getTableSortField(),
                     selfField = $scope.tableSortField;
+
                 return currentField === selfField;
             };
+
             /**
              * Checks if we are sorting on reverse order.
              *
              * @memberof TableSortFieldController
+             * @function reverse
              * @return {boolean}
+             * @instance
              */
             self.reverse = function () {
                 return !!reverse;
             };
+
             /*
              * Publish the API on the scope
              */
             $scope.tableSort = self.tableSort;
             $scope.current = self.current;
             $scope.reverse = self.reverse;
+
             /**
              * Initializes the initial sorting on the field.
              *
              * @memberof TableSortFieldController
+             * @function initInitial
+             * @instance
              * @private
              */
             function initInitial () {
@@ -217,21 +310,35 @@
                             if (!tableSortField) {
                                 return;
                             }
+
                             // De-register the watcher
                             unwatch();
+
+                            // Reverse the initial sort if the reverse attribute is set on the
+                            // directive.
+                            if ($scope.tableSortReverseInitial) {
+                                console.log("TableSortFieldController: Initial sort reversed on expression '" + tableSortField + "'.");
+
+                                reverse = true;
+                            }
+
                             // Sort if this field is configured as initial sort field and there is
                             // no sort configuration yet
-                            if ($scope.tableSortInitial && !$scope.tableSortCtrl.getTableSortField()) {
+                            if ($scope.tableSortInitial &amp;&amp; !$scope.tableSortCtrl.getTableSortField()) {
                                 console.log("TableSortFieldController: Initial sort on expression '" + tableSortField + "'.");
+
                                 $scope.tableSort();
                             }
                         }
                     )
             }
+
             /**
              * Initializes the directive.
              *
              * @memberof TableSortFieldController
+             * @function init
+             * @instance
              * @private
              */
             function init () {
@@ -240,4 +347,22 @@
         }
     );
 })();
-</code></pre>        </article>        <!-- index.html -->        <!-- class files -->      </div>      <footer style="clear:both">        Documentation generated by        <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>        using        <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>      </footer>    </div>    <script src="js/prettify.js"></script>    <script src="js/angular.min.js"></script>    <script src="js/site.js"></script>    <!--%= prettyJson %-->    <script>      prettyPrint();      var lineNo = window.location.hash.match(/#line([0-9]+)$/);      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();    </script>  </body></html>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<!-- <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the Minami theme.
+</footer> -->
+
+<script>prettyPrint();</script>
+<!-- <script src="scripts/linenumber.js"></script> -->
+</body>
+</html>

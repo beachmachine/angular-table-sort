@@ -68,6 +68,7 @@ This is how to create the table:
                 <i class="fa" ng-class="{'fa-sort-desc': reverse(), 'fa-sort-asc': !reverse()}" ng-show="current()" aria-hidden="true"></i>
             </th>
             <th table-sort-field="email"
+                table-sort-reverse-initial
                 ng-click="tableSort()">
                 <span>Email</span>
                 <i class="fa" ng-class="{'fa-sort-desc': reverse(), 'fa-sort-asc': !reverse()}" ng-show="current()" aria-hidden="true"></i>

@@ -117,8 +117,8 @@ gulp.task('scripts-js', function () {
 gulp.task('docs', function (cb) {
     childProcess.exec(
         'node_modules/jsdoc/jsdoc.js '+
-        '--configure node_modules/angular-jsdoc/common/conf.json '+ // config file
-        '--template node_modules/angular-jsdoc/angular-template '+ // template file
+        '--configure jsdoc.json '+ // config file
+        '--template node_modules/simple-jsdoc '+ // template file
         '--destination "' + config.docConfig.dist + '" '+ // output directory
         '--readme ./README.md ' + // to include README.md as index contents
         '--recurse "' + config.docConfig.src + '" ', // source code directory

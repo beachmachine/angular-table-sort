@@ -1,6 +1,6 @@
 {
   "name": "angular-table-sort",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A directive that helps you create sortable tables, e.g. by clicking on the table header.",
   "main": "dist/ngtablesort.min.js",
   "repository": {
@@ -15,11 +15,10 @@
   ],
   "author": "Andreas Stocker <andreas@stocker.co.it>",
   "license": "MIT",
-  "dependencies": {
-    "angular": "^1.6.0"
+  "peerDependencies": {
+    "angular": "^1.4.0"
   },
   "devDependencies": {
-    "angular-jsdoc": "^1.5.0",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.2",
@@ -35,6 +34,7 @@
     "gulp-util": "^3.0.8",
     "gulp-watch": "^4.3.11",
     "jsdoc": "^3.4.3",
-    "license-checker": "^8.0.4"
+    "license-checker": "^8.0.4",
+    "simple-jsdoc": "0.0.4"
   }
 }

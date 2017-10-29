@@ -45,6 +45,7 @@
      *
      * @name TableSortController
      * @ngdoc controller
+     * @class
      */
     module.controller('TableSortController',
         function ($scope,
@@ -61,7 +62,9 @@
              * Gets the expression to sort on.
              *
              * @memberof TableSortController
+             * @function getTableSortField
              * @return {*}
+             * @instance
              */
             self.getTableSortField = function () {
                 return tableSortField;
@@ -71,7 +74,9 @@
              * Sets the expression to sort on.
              *
              * @memberof TableSortController
+             * @function setTableSortField
              * @param config
+             * @instance
              */
             self.setTableSortField = function (config) {
                 tableSortField = config;
@@ -81,7 +86,9 @@
              * Gets whether to sort in reverse order or not.
              *
              * @memberof TableSortController
+             * @function getTableSortReverse
              * @return {boolean}
+             * @instance
              */
             self.getTableSortReverse = function () {
                 return !!tableSortReverse;
@@ -91,7 +98,9 @@
              * Sets whether to sort in reverse order or not.
              *
              * @memberof TableSortController
+             * @function setTableSortReverse
              * @param reverse
+             * @instance
              */
             self.setTableSortReverse = function (reverse) {
                 tableSortReverse = reverse;
@@ -101,8 +110,10 @@
              * Sorts the given list by the sort configuration.
              *
              * @memberof TableSortController
+             * @function tableSort
              * @param list
              * @return {*}
+             * @instance
              */
             self.tableSort = function (list) {
                 var
@@ -157,6 +168,7 @@
                     scope.tableSortCtrl = tableSortCtrl;
                     scope.tableSortField = attrs.tableSortField;
                     scope.tableSortInitial = !angular.isUndefined(attrs.tableSortInitial);
+                    scope.tableSortReverseInitial = !angular.isUndefined(attrs.tableSortReverseInitial);
                 }
             };
         }
@@ -167,6 +179,7 @@
      *
      * @name TableSortFieldController
      * @ngdoc controller
+     * @class
      */
     module.controller('TableSortFieldController',
         function ($scope) {
@@ -183,6 +196,8 @@
              * Calls the sort operation on the table sort directive.
              *
              * @memberof TableSortFieldController
+             * @function tableSort
+             * @instance
              */
             self.tableSort = function () {
                 var
@@ -191,7 +206,7 @@
 
                 // Toggle reverse if we are already sorting on this field, else
                 // do not reverse
-                reverse = currentField === selfField ? !reverse : false;
+                reverse = currentField === selfField ? !reverse : reverse;
 
                 $scope.tableSortCtrl.setTableSortField(selfField);
                 $scope.tableSortCtrl.setTableSortReverse(reverse);
@@ -201,7 +216,9 @@
              * Checks if this is the field we are currently sorting on.
              *
              * @memberof TableSortFieldController
+             * @function current
              * @return {boolean}
+             * @instance
              */
             self.current = function () {
                 var
@@ -215,7 +232,9 @@
              * Checks if we are sorting on reverse order.
              *
              * @memberof TableSortFieldController
+             * @function reverse
              * @return {boolean}
+             * @instance
              */
             self.reverse = function () {
                 return !!reverse;
@@ -232,6 +251,8 @@
              * Initializes the initial sorting on the field.
              *
              * @memberof TableSortFieldController
+             * @function initInitial
+             * @instance
              * @private
              */
             function initInitial () {
@@ -249,6 +270,14 @@
                             // De-register the watcher
                             unwatch();
 
+                            // Reverse the initial sort if the reverse attribute is set on the
+                            // directive.
+                            if ($scope.tableSortReverseInitial) {
+                                console.log("TableSortFieldController: Initial sort reversed on expression '" + tableSortField + "'.");
+
+                                reverse = true;
+                            }
+
                             // Sort if this field is configured as initial sort field and there is
                             // no sort configuration yet
                             if ($scope.tableSortInitial && !$scope.tableSortCtrl.getTableSortField()) {
@@ -264,6 +293,8 @@
              * Initializes the directive.
              *
              * @memberof TableSortFieldController
+             * @function init
+             * @instance
              * @private
              */
             function init () {
